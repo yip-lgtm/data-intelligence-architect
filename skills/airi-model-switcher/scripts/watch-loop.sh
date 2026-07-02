@@ -25,17 +25,32 @@ PID_FILE="${SKILL_DIR}/logs/watcher.pid"
 interval=60
 once=0
 foreground=0
-for arg in "$@"; do
+# Use positional-index loop so `shift` + positional refs work correctly
+i=1
+while [[ $i -le $# ]]; do
+  arg="${!i}"
   case "$arg" in
-    --interval) shift; interval="${1:-60}" ;;
-    --interval=*) interval="${arg#*=}" ;;
-    --once) once=1 ;;
-    --foreground) foreground=1 ;;
+    --interval)
+      i=$((i + 1))
+      next="${!i:-60}"
+      interval="$next"
+      ;;
+    --interval=*)
+      interval="${arg#*=}"
+      ;;
+    --once)
+      once=1
+      ;;
+    --foreground)
+      foreground=1
+      ;;
   esac
+  i=$((i + 1))
 done
 
 ts() { date -u '+%Y-%m-%dT%H:%M:%SZ'; }
-log() { echo "[$(ts)] $*" | tee -a "$LOG_FILE" >&2; }
+# log() writes to LOG_FILE only. Send to stderr if you want a copy.
+log() { echo "[$(ts)] $*" >> "$LOG_FILE"; }
 
 if [[ ! -f "$CONFIG_FILE" ]]; then
   log "❌ config not found: $CONFIG_FILE"

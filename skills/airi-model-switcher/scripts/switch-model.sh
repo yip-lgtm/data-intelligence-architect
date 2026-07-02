@@ -23,7 +23,7 @@ AIRI_WS_URL="${AIRI_WS_URL:-ws://127.0.0.1:6121}"
 AIRI_SETTINGS_FILE="${AIRI_SETTINGS_FILE:-}"
 
 ts() { date -u '+%Y-%m-%dT%H:%M:%SZ'; }
-log() { echo "[$(ts)] $*" | tee -a "$LOG_FILE" >&2; }
+log() { echo "[$(ts)] $*" >> "$LOG_FILE"; }
 
 if [[ ! -f "$CONFIG_FILE" ]]; then
   log "❌ config not found: $CONFIG_FILE"
