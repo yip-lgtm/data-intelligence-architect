@@ -274,6 +274,9 @@ def main() -> int:
     ap.add_argument("--project-no", help="Project number (default auto)")
     ap.add_argument("--write", action="store_true",
                     help="Write to projects/<item>/MW<item>_Report.md")
+    ap.add_argument("--force", action="store_true",
+                    help="Overwrite existing report (default: refuse)")
+    ap.add_argument("--output", help="Explicit output path (overrides --write auto-locate)")
     args = ap.parse_args()
 
     meta = ITEM_META.get(args.item_id)
@@ -290,15 +293,39 @@ def main() -> int:
 
     md = render_template(args.item_id, params, args.project_no)
 
+    if args.output:
+        target = Path(args.output)
+        if target.exists() and not args.force:
+            print(f"❌ {target} already exists. Use --force to overwrite.", file=sys.stderr)
+            return 3
+        target.write_text(md)
+        print(f"✓ Written to {target}")
+        return 0
+
     if args.write:
         # Find or create the project folder
+        # IMPORTANT: "MW1.6" must NOT match "MW1.60", "MW1.61", "MW1.62"
+        # We require the next char to be "_" or "." (folder separator)
         existing = None
+        target_prefix = f"MW{args.item_id}"
         for entry in PROJECTS_DIR.iterdir():
-            if entry.is_dir() and entry.name.startswith(f"MW{args.item_id}"):
+            if not entry.is_dir():
+                continue
+            name = entry.name
+            if name == target_prefix or \
+               name.startswith(target_prefix + "_") or \
+               name.startswith(target_prefix + "."):
                 existing = entry
                 break
+
         if existing:
-            target = existing / f"MW{args.item_id}_Report.md"
+            # Use timestamped filename to avoid clobbering existing reports
+            from datetime import date as _date
+            ts = _date.today().isoformat()
+            target = existing / f"MW{args.item_id}_Draft_{ts}.md"
+            if target.exists() and not args.force:
+                print(f"❌ {target} already exists. Use --force to overwrite.", file=sys.stderr)
+                return 3
             target.write_text(md)
             print(f"✓ Written to {target}")
         else:
