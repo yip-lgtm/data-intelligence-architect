@@ -1,0 +1,54 @@
+{
+  "bootcamps": {
+    "mw01": {
+      "name": "MW01 RSE Bootcamp",
+      "shortName": "MW01",
+      "emoji": "🏗️",
+      "path": "/app/bootcamps/MW01-RSE-Bootcamp",
+      "type": "rse-report",
+      "domain": "Hong Kong Minor Works Class I — RSE Calculation Reports",
+      "startDate": "2026-05-15",
+      "coreItems": ["1.6", "1.1", "1.5", "1.27"],
+      "progressFile": "progress/Bootcamp_Progress.md",
+      "projectsDir": "projects",
+      "referencesDir": "MW01-Technical-Guidelines",
+      "statusEmojis": {
+        "complete": "✅",
+        "partial": "⏳",
+        "not_started": "⬜",
+        "in_progress": "🔵"
+      }
+    },
+    "msc-ire": {
+      "name": "24-Week Weekend Bootcamp (PolyU MSc IRE)",
+      "shortName": "MSC-IRE",
+      "emoji": "🤖",
+      "path": "/app/bootcamps/msc-ire/24_Week_Weekend_Bootcamp",
+      "type": "weekend-paced",
+      "domain": "PolyU MSc Intelligent Robotics Engineering — BEng MAE + Portfolio",
+      "startDate": "2026-06-13",
+      "totalWeeks": 24,
+      "phaseStartWeeks": [1, 7, 13, 19],
+      "phaseNames": {
+        "1": "Phase 1: Foundations",
+        "2": "Phase 2: Mechatronics & Control",
+        "3": "Phase 3: Robotics & Advanced",
+        "4": "Phase 4: Integration & FYP"
+      },
+      "progressFile": "progress.md",
+      "existingScripts": "/app/bootcamps/msc-ire/24_Week_Weekend_Bootcamp/skill/",
+      "statusEmojis": {
+        "complete": "✅",
+        "partial": "⏳",
+        "not_started": "⬜",
+        "in_progress": "🔵"
+      }
+    }
+  },
+  "agent": {
+    "memoryFile": "/app/data-intelligence-architect/memory",
+    "weeklyCronDayHKT": "Saturday 09:00",
+    "telegramChatIdEnv": "TELEGRAM_CHAT_ID",
+    "telegramBotTokenEnv": "TELEGRAM_BOT_TOKEN"
+  }
+}
