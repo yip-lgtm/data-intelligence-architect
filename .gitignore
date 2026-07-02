@@ -29,3 +29,7 @@ __pycache__/
 *.pyc
 *.pyo
 skills/**/__pycache__/
+# Generated study material
+skills/bootcamp-content-assistant/cards.tsv
+skills/bootcamp-content-assistant/outputs/
+skills/bootcamp-content-assistant/*.tsv
