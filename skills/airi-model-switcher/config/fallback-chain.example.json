@@ -1,0 +1,78 @@
+{
+  "$schema": "./fallback-chain.schema.json",
+  "_comment": "Fallback chain for AIRI. Edit values, remove '_comment'. Keep order = preference. First entry = primary.",
+
+  "primary": "openai-gpt-4o",
+  "cooldownSeconds": 300,
+  "notifyOnEverySwitch": true,
+
+  "models": [
+    {
+      "id": "openai-gpt-4o",
+      "provider": "openai",
+      "model": "gpt-4o",
+      "baseUrl": "https://api.openai.com/v1",
+      "apiKeyEnv": "OPENAI_API_KEY",
+      "supportsTools": true,
+      "supportsVision": true,
+      "maxTokens": 16384,
+      "costPerMtokInput": 2.5,
+      "costPerMtokOutput": 10.0,
+      "tags": ["primary", "vision", "tools"]
+    },
+    {
+      "id": "anthropic-claude-sonnet",
+      "provider": "anthropic",
+      "model": "claude-sonnet-4.6",
+      "baseUrl": "https://api.anthropic.com/v1",
+      "apiKeyEnv": "ANTHROPIC_API_KEY",
+      "supportsTools": true,
+      "supportsVision": true,
+      "maxTokens": 8192,
+      "costPerMtokInput": 3.0,
+      "costPerMtokOutput": 15.0,
+      "tags": ["fallback", "vision", "tools"]
+    },
+    {
+      "id": "google-gemini-flash",
+      "provider": "google-generative-ai",
+      "model": "gemini-2.5-flash",
+      "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+      "apiKeyEnv": "GEMINI_API_KEY",
+      "supportsTools": true,
+      "supportsVision": true,
+      "maxTokens": 8192,
+      "costPerMtokInput": 0.15,
+      "costPerMtokOutput": 0.6,
+      "tags": ["cheap", "fast", "vision"]
+    },
+    {
+      "id": "ollama-local-llama3",
+      "provider": "ollama",
+      "model": "llama3.1:8b",
+      "baseUrl": "http://127.0.0.1:11434/v1",
+      "apiKeyEnv": null,
+      "supportsTools": false,
+      "supportsVision": false,
+      "maxTokens": 4096,
+      "costPerMtokInput": 0,
+      "costPerMtokOutput": 0,
+      "tags": ["offline", "free", "last-resort"]
+    }
+  ],
+
+  "watcher": {
+    "intervalSeconds": 60,
+    "testPrompt": "ping",
+    "recoveryProbeInterval": 600,
+    "maxConsecutiveFailures": 3
+  },
+
+  "notification": {
+    "telegram": {
+      "enabled": true,
+      "botTokenEnv": "TELEGRAM_BOT_TOKEN",
+      "chatIdEnv": "TELEGRAM_CHAT_ID"
+    }
+  }
+}
