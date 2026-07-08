@@ -50,4 +50,16 @@
 
 ## Notes
 
-_(running notes per term / per week — see `study/msc-ire/week-NN/`)_
+### Progress tracker
+
+| Week | Status | Notes |
+|---|---|---|
+| 1–3 | ⬜ upstream not marked | Not yet summarized locally |
+| 4 / 2026-07-04–05 | ✅ | MAEG3010 Mechanics of Materials — committed Sun 2026-07-05 |
+| 5 / 2026-07-11–12 | 🟡 prepped | EEEN3030 Materials + ELEG2202 Circuits — midweek scaffolds Wed 2026-07-08; Saturday cron will generate flashcards + practice |
+
+### Week 5 IRE relevance hooks (planned for sensor modeling sim)
+- Materials: sensor housing, gripper pad selection, motor material limits
+- Circuits: sensor signal conditioning (op-amp), motor driver H-bridge + PWM, PID electronics, RC anti-aliasing
+
+
