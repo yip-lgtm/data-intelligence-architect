@@ -56,7 +56,7 @@
 |---|---|---|
 | 1–3 | ⬜ upstream not marked | Not yet summarized locally |
 | 4 / 2026-07-04–05 | ✅ | MAEG3010 Mechanics of Materials — committed Sun 2026-07-05 |
-| 5 / 2026-07-11–12 | 🟡 prepped | EEEN3030 Materials + ELEG2202 Circuits — midweek scaffolds Wed 2026-07-08; Saturday cron will generate flashcards + practice |
+| 5 / 2026-07-11–12 | 🟢 auto-gen done (Sat) | EEEN3030 Materials + ELEG2202 Circuits — midweek scaffolds Wed 2026-07-08; Sat cron generated combined `cards.tsv` + 2× `practice.json` + combined `practice.md`. Source `.md` files still skeleton — generated prompts reflect placeholders. Awaiting user Anki review + (todo) fill-in. |
 
 ### Week 5 IRE relevance hooks (planned for sensor modeling sim)
 - Materials: sensor housing, gripper pad selection, motor material limits
